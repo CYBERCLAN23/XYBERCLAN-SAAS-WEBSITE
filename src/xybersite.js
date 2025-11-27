@@ -138,6 +138,7 @@ const XyberClanWebsite = () => {
                 { name: 'Home', href: '#home' },
                 { name: 'About', href: '#about' },
                 { name: 'Services', href: '#services' },
+                { name: 'Team', href: '/team' },
                 { name: 'Contact', href: '#contact' }
               ].map((item) => (
                 <a
@@ -198,6 +199,7 @@ const XyberClanWebsite = () => {
               { name: 'Home', href: '#home' },
               { name: 'About', href: '#about' },
               { name: 'Services', href: '#services' },
+              { name: 'Team', href: '/team' },
               { name: 'Contact', href: '#contact' }
             ].map((item, idx) => (
               <a
@@ -379,6 +381,36 @@ const XyberClanWebsite = () => {
                   <img src="/team/logo.jpg" alt="XyberClan Logo" className="w-full h-full object-contain drop-shadow-2xl" />
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Our Team Section */}
+      <section className={`py-28 px-4 ${isDark ? 'bg-black' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto">
+          <div ref={teamRef} className={`text-center mb-20 slide-up ${teamVisible ? 'visible' : ''}`}>
+            <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
+              Meet Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Team</span>
+            </h2>
+            <p className={`text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+              The passionate individuals behind XyberClan's success.
+            </p>
+          </div>
+
+          <div className={`text-center zoom-in ${teamVisible ? 'visible' : ''}`}>
+            <div className={`${isDark ? 'bg-gradient-to-r from-cyan-900/20 to-blue-900/20 border-cyan-900/30' : 'bg-gradient-to-r from-cyan-50 to-blue-50 border-cyan-100'} border rounded-3xl p-14 max-w-4xl mx-auto`}>
+              <h3 className="text-3xl md:text-4xl font-black mb-6 tracking-tight">Our Expert Team</h3>
+              <p className={`text-lg mb-8 max-w-3xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                Meet the talented professionals who make XyberClan exceptional. From web design to cybersecurity, our team brings diverse expertise to every project.
+              </p>
+              <a
+                href="/team"
+                className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/40 hover:-translate-y-1"
+              >
+                View Full Team
+                <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
         </div>

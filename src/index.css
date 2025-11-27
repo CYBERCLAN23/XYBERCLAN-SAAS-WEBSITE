@@ -125,6 +125,12 @@ body * {
   transition-delay: 0.6s;
 }
 
+/* Profile Image Centering */
+.profile-image-center {
+  object-fit: cover;
+  object-position: center 20%;
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   html {

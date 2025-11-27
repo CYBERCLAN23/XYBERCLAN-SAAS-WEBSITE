@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://xyberclan.com/sitemap.xml
+Sitemap: https://xyberclan-saas-website.vercel.app/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1
