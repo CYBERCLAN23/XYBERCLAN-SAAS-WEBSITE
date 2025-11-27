@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Shield, Code, MessageSquare, Palette, Image as ImageIcon, ChevronRight, Sun, Moon, Menu, X, Linkedin, Github, Twitter, Facebook, Send, MessageCircle, Briefcase, Laptop } from 'lucide-react';
-
+import { Shield, Code, MessageSquare, Palette, Image as ImageIcon, ChevronRight, Sun, Moon, Menu, X, Linkedin, Github, Twitter, Facebook, Send, MessageCircle, Briefcase, Laptop, Globe } from 'lucide-react';
+import { translations } from './translations';
 
 // Custom hook for scroll animations
 const useScrollAnimation = () => {
@@ -8,44 +8,94 @@ const useScrollAnimation = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const currentElement = elementRef.current;
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !isVisible) {
+                if (entry.isIntersecting) {
                     setIsVisible(true);
+                    observer.disconnect();
                 }
             },
             {
-                threshold: 0.1,
-                rootMargin: '100px'
+                threshold: 0.1
             }
         );
 
-        if (currentElement) {
-            observer.observe(currentElement);
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
         }
 
-        return () => {
-            if (currentElement) {
-                observer.unobserve(currentElement);
-            }
-        };
-    }, [isVisible]);
+        return () => observer.disconnect();
+    }, []);
 
     return [elementRef, isVisible];
 };
 
 const TeamPage = () => {
     const [theme, setTheme] = useState('light');
+    const [lang, setLang] = useState('en');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [heroRef, heroVisible] = useScrollAnimation();
     const [teamRef, teamVisible] = useScrollAnimation();
+    const t = translations[lang];
 
-    const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+    const toggleTheme = (e) => {
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+
+        // Check if View Transitions API is supported
+        if (!document.startViewTransition) {
+            setTheme(newTheme);
+            return;
+        }
+
+        // Get click coordinates
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Calculate distance to furthest corner
+        const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
+
+        // Start the transition
+        const transition = document.startViewTransition(() => {
+            setTheme(newTheme);
+        });
+
+        // Animate the circle
+        transition.ready.then(() => {
+            const clipPath = [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+            ];
+
+            document.documentElement.animate(
+                {
+                    clipPath: clipPath,
+                },
+                {
+                    duration: 500,
+                    easing: 'ease-in',
+                    pseudoElement: '::view-transition-new(root)',
+                }
+            );
+        });
+    };
+
+    const toggleLang = () => {
+        setLang(lang === 'en' ? 'fr' : 'en');
     };
 
     const isDark = theme === 'dark';
+
+    // Update body class for theme
+    useEffect(() => {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [isDark]);
 
     const teamMembers = [
         {
@@ -182,11 +232,11 @@ const TeamPage = () => {
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center space-x-1">
                             {[
-                                { name: 'Home', href: '/' },
-                                { name: 'About', href: '/#about' },
-                                { name: 'Services', href: '/#services' },
-                                { name: 'Team', href: '/team' },
-                                { name: 'Contact', href: '/#contact' }
+                                { name: t.nav.home, href: '/' },
+                                { name: t.nav.about, href: '/#about' },
+                                { name: t.nav.services, href: '/#services' },
+                                { name: t.nav.team, href: '/team' },
+                                { name: t.nav.contact, href: '/#contact' }
                             ].map((item) => (
                                 <a
                                     key={item.name}
@@ -199,10 +249,22 @@ const TeamPage = () => {
                                 </a>
                             ))}
 
+                            {/* Language Toggle Button */}
+                            <button
+                                onClick={toggleLang}
+                                className={`ml-4 p-3 rounded-xl ${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800' : 'bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300'} transition-all duration-300 hover:scale-110 shadow-lg ${isDark ? 'shadow-cyan-500/10' : 'shadow-gray-300/50'}`}
+                                aria-label="Toggle language"
+                            >
+                                <div className="flex items-center gap-1 font-bold text-sm">
+                                    <Globe className={`w-4 h-4 ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`} />
+                                    <span className={isDark ? 'text-gray-300' : 'text-gray-700'}>{lang.toUpperCase()}</span>
+                                </div>
+                            </button>
+
                             {/* Theme Toggle */}
                             <button
                                 onClick={toggleTheme}
-                                className={`ml-4 p-3 rounded-xl ${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800' : 'bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300'} transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg ${isDark ? 'shadow-cyan-500/10' : 'shadow-gray-300/50'}`}
+                                className={`ml-2 p-3 rounded-xl ${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800' : 'bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300'} transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg ${isDark ? 'shadow-cyan-500/10' : 'shadow-gray-300/50'}`}
                                 aria-label="Toggle theme"
                             >
                                 {isDark ? (
@@ -214,10 +276,10 @@ const TeamPage = () => {
 
                             {/* CTA Button */}
                             <a
-                                href="/#contact"
+                                href="/start-project"
                                 className="ml-3 px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-[15px] font-bold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/30 hover:-translate-y-0.5"
                             >
-                                Get Started
+                                {t.nav.getStarted}
                             </a>
                         </div>
 
@@ -238,15 +300,15 @@ const TeamPage = () => {
 
                 {/* Mobile Menu */}
                 <div
-                    className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${mobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                    className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${mobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                     <div className={`${isDark ? 'bg-gradient-to-b from-gray-900/95 to-gray-950/95' : 'bg-gradient-to-b from-white/95 to-gray-50/95'} backdrop-blur-xl border-t ${isDark ? 'border-cyan-500/10' : 'border-gray-200/50'} px-6 py-6 space-y-1`}>
                         {[
-                            { name: 'Home', href: '/' },
-                            { name: 'About', href: '/#about' },
-                            { name: 'Services', href: '/#services' },
-                            { name: 'Team', href: '/team' },
-                            { name: 'Contact', href: '/#contact' }
+                            { name: t.nav.home, href: '/' },
+                            { name: t.nav.about, href: '/#about' },
+                            { name: t.nav.services, href: '/#services' },
+                            { name: t.nav.team, href: '/team' },
+                            { name: t.nav.contact, href: '/#contact' }
                         ].map((item, idx) => (
                             <a
                                 key={item.name}
@@ -257,6 +319,37 @@ const TeamPage = () => {
                                 {item.name}
                             </a>
                         ))}
+
+                        {/* Mobile Language Toggle */}
+                        <button
+                            onClick={toggleLang}
+                            className={`w-full flex items-center justify-between px-5 py-3.5 text-[16px] font-semibold ${isDark ? 'text-gray-300 hover:text-white hover:bg-cyan-500/10' : 'text-gray-700 hover:text-gray-900 hover:bg-cyan-50'} rounded-xl transition-all duration-300`}
+                        >
+                            <span>Language: {lang === 'en' ? 'English' : 'Français'}</span>
+                            <Globe className={`w-5 h-5 ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`} />
+                        </button>
+
+                        {/* Mobile Theme Toggle */}
+                        <button
+                            onClick={toggleTheme}
+                            className={`w-full flex items-center justify-between px-5 py-3.5 text-[16px] font-semibold ${isDark ? 'text-gray-300 hover:text-white hover:bg-cyan-500/10' : 'text-gray-700 hover:text-gray-900 hover:bg-cyan-50'} rounded-xl transition-all duration-300`}
+                        >
+                            <span>{t.nav.toggleTheme}</span>
+                            {isDark ? (
+                                <Sun className="w-5 h-5 text-amber-400" />
+                            ) : (
+                                <Moon className="w-5 h-5 text-indigo-600" />
+                            )}
+                        </button>
+
+                        {/* Mobile CTA */}
+                        <a
+                            href="/start-project"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block mt-4 px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-center text-[16px] font-bold rounded-xl transition-all duration-300 shadow-lg shadow-cyan-500/20"
+                        >
+                            {t.nav.getStarted}
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -266,10 +359,10 @@ const TeamPage = () => {
                 <div className="max-w-7xl mx-auto text-center">
                     <div ref={heroRef} className={`slide-up ${heroVisible ? 'visible' : ''}`}>
                         <h1 className="text-6xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tight">
-                            Meet The <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Team</span>
+                            {t.team.title} <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Team</span>
                         </h1>
                         <p className={`text-xl md:text-2xl mb-10 max-w-4xl mx-auto leading-relaxed font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                            The passionate experts behind XyberClan's success. Each member brings unique skills and dedication to deliver exceptional results.
+                            {t.team.subtitle}
                         </p>
                     </div>
                 </div>
@@ -366,15 +459,15 @@ const TeamPage = () => {
             <section className={`py-28 px-4 ${isDark ? 'bg-black' : 'bg-white'}`}>
                 <div className="max-w-7xl mx-auto text-center">
                     <div className={`zoom-in ${teamVisible ? 'visible' : ''} ${isDark ? 'bg-gradient-to-r from-cyan-900/20 to-blue-900/20 border-cyan-900/30' : 'bg-gradient-to-r from-cyan-50 to-blue-50 border-cyan-100'} border rounded-3xl p-14 max-w-5xl mx-auto`}>
-                        <h3 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Ready to Work With Us?</h3>
+                        <h3 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">{t.contact.ctaTitle}</h3>
                         <p className={`text-xl mb-10 max-w-3xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                            Let's collaborate and bring your vision to life with our expert team.
+                            {t.contact.ctaDesc}
                         </p>
                         <a
-                            href="/#contact"
+                            href="/start-project"
                             className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-6 rounded-2xl font-bold text-xl transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/40 hover:-translate-y-1"
                         >
-                            Get In Touch
+                            {t.contact.ctaButton}
                             <ChevronRight className="w-7 h-7 group-hover:translate-x-1 transition-transform" />
                         </a>
                     </div>
@@ -388,7 +481,7 @@ const TeamPage = () => {
                         <span className="text-white">Xyber</span>
                         <span className="text-cyan-400">Clan</span>
                     </div>
-                    <p className="text-gray-400 text-sm">Building Digital Dreams in Yaoundé</p>
+                    <p className="text-gray-400 text-sm">{t.footer.tagline}</p>
                     <p className="text-gray-500 text-xs mt-4">© 2024 XyberClan. All rights reserved.</p>
                 </div>
             </footer>
