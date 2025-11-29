@@ -620,10 +620,10 @@ const XyberClanWebsite = () => {
           </div>
 
           <div className="text-center mt-8">
-            <button className="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center space-x-2">
+            <a href="/start-project" className="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center space-x-2 transition-colors">
               <span>{t.deliver.cta}</span>
               <ChevronRight className="w-5 h-5" />
-            </button>
+            </a>
           </div>
         </div>
       </section >
