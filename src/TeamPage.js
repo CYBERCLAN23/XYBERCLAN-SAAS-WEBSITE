@@ -199,12 +199,28 @@ const TeamPage = () => {
             ]
         },
         {
-            image: '/team/adobe-designer.jpg',
+            image: '/team/adobe-designer.jpeg',
             name: 'Creative Designer',
             role: 'Photoshop & Adobe Suite Expert',
             icon: <ImageIcon className="w-6 h-6" />,
             description: 'Master of visual storytelling through Adobe Creative Suite. Delivers high-quality graphics, photo manipulation, branding materials, and creative assets that elevate brand presence.',
             expertise: ['Adobe Photoshop', 'Illustrator & InDesign', 'Photo Editing', 'Brand Identity Design'],
+            socials: [
+                { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: '#', color: 'hover:text-blue-600' },
+                { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: '#', color: 'hover:text-gray-900 dark:hover:text-white' },
+                { name: 'Twitter', icon: <Twitter className="w-5 h-5" />, url: '#', color: 'hover:text-sky-500' },
+                { name: 'Facebook', icon: <Facebook className="w-5 h-5" />, url: '#', color: 'hover:text-blue-700' },
+                { name: 'TikTok', icon: <Send className="w-5 h-5" />, url: '#', color: 'hover:text-pink-600' },
+                { name: 'WhatsApp', icon: <MessageCircle className="w-5 h-5" />, url: '#', color: 'hover:text-green-500' }
+            ]
+        },
+        {
+            image: '/team/frontend-designer.jpg',
+            name: 'Frontend Developer & Designer',
+            role: 'Frontend Dev & Web Designer',
+            icon: <Code className="w-6 h-6" />,
+            description: 'Bridging the gap between design and engineering. Expert in building responsive, pixel-perfect user interfaces and creating seamless web experiences with a keen eye for design.',
+            expertise: ['React & Frontend Dev', 'Web Design', 'UI/UX Implementation', 'Responsive Layouts'],
             socials: [
                 { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: '#', color: 'hover:text-blue-600' },
                 { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: '#', color: 'hover:text-gray-900 dark:hover:text-white' },
