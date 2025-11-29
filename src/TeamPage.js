@@ -229,6 +229,22 @@ const TeamPage = () => {
                 { name: 'TikTok', icon: <Send className="w-5 h-5" />, url: '#', color: 'hover:text-pink-600' },
                 { name: 'WhatsApp', icon: <MessageCircle className="w-5 h-5" />, url: '#', color: 'hover:text-green-500' }
             ]
+        },
+        {
+            image: '/team/cybersecurity-chief.jpg',
+            name: 'Chief of Cybersecurity',
+            role: 'Pentester, Security Educator & Backend Dev',
+            icon: <Shield className="w-6 h-6" />,
+            description: 'Leads the cybersecurity team with expertise in penetration testing, security education, and backend development. Combines offensive security skills with teaching abilities to protect and educate.',
+            expertise: ['Penetration Testing', 'Security Education', 'Backend Development', 'Threat Analysis'],
+            socials: [
+                { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: '#', color: 'hover:text-blue-600' },
+                { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: '#', color: 'hover:text-gray-900 dark:hover:text-white' },
+                { name: 'Twitter', icon: <Twitter className="w-5 h-5" />, url: '#', color: 'hover:text-sky-500' },
+                { name: 'Facebook', icon: <Facebook className="w-5 h-5" />, url: '#', color: 'hover:text-blue-700' },
+                { name: 'TikTok', icon: <Send className="w-5 h-5" />, url: '#', color: 'hover:text-pink-600' },
+                { name: 'WhatsApp', icon: <MessageCircle className="w-5 h-5" />, url: '#', color: 'hover:text-green-500' }
+            ]
         }
     ];
 
