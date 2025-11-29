@@ -168,11 +168,11 @@ const TeamPage = () => {
         },
         {
             image: '/team/communications-manager.jpg',
-            name: 'Communications Manager',
-            role: 'Brand Communication & Strategy',
-            icon: <MessageSquare className="w-6 h-6" />,
-            description: 'Crafts compelling brand narratives and manages all communication channels. Expert in content strategy, social media management, and building strong relationships with clients and stakeholders.',
-            expertise: ['Content Strategy', 'Brand Messaging', 'Social Media Management', 'Stakeholder Relations'],
+            name: 'Analyst Python & Co-Founder',
+            role: 'Python Specialist & Strategy',
+            icon: <Code className="w-6 h-6" />,
+            description: 'Specializes in Python analysis and strategic planning. As a co-founder, he drives the technical vision and business strategy of XyberClan.',
+            expertise: ['Python Analysis', 'Strategic Planning', 'Data Science', 'Business Strategy'],
             socials: [
                 { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: '#', color: 'hover:text-blue-600' },
                 { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: '#', color: 'hover:text-gray-900 dark:hover:text-white' },
