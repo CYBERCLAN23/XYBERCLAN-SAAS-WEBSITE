@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, Send, Mail, MessageCircle, Check, Globe } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Send, Mail, MessageCircle, Check, Globe, Smartphone, Palette, Shield, Monitor, GraduationCap, Zap, Calendar, CalendarDays, CalendarRange, Clock, Coins, Banknote, CreditCard, Gem, HelpCircle } from 'lucide-react';
 import { translations } from './translations';
 
 const ProjectForm = () => {
@@ -25,12 +25,12 @@ const ProjectForm = () => {
             question: t.form.questions.projectType,
             type: 'choice',
             options: [
-                { value: 'web', label: t.form.options.web, icon: '🌐' },
-                { value: 'mobile', label: t.form.options.mobile, icon: '📱' },
-                { value: 'design', label: t.form.options.design, icon: '🎨' },
-                { value: 'cybersec', label: t.form.options.cybersec, icon: '🔒' },
-                { value: 'hardware', label: t.form.options.hardware, icon: '🖥️' },
-                { value: 'training', label: t.form.options.training, icon: '📚' }
+                { value: 'web', label: t.form.options.web, icon: <Globe className="w-8 h-8" /> },
+                { value: 'mobile', label: t.form.options.mobile, icon: <Smartphone className="w-8 h-8" /> },
+                { value: 'design', label: t.form.options.design, icon: <Palette className="w-8 h-8" /> },
+                { value: 'cybersec', label: t.form.options.cybersec, icon: <Shield className="w-8 h-8" /> },
+                { value: 'hardware', label: t.form.options.hardware, icon: <Monitor className="w-8 h-8" /> },
+                { value: 'training', label: t.form.options.training, icon: <GraduationCap className="w-8 h-8" /> }
             ]
         },
         {
@@ -50,11 +50,11 @@ const ProjectForm = () => {
             question: t.form.questions.timeline,
             type: 'choice',
             options: [
-                { value: 'asap', label: t.form.options.asap, icon: '⚡' },
-                { value: '1-2weeks', label: t.form.options.weeks, icon: '📅' },
-                { value: '1month', label: t.form.options.month, icon: '📆' },
-                { value: '2-3months', label: t.form.options.months, icon: '🗓️' },
-                { value: 'flexible', label: t.form.options.flexible, icon: '🔄' }
+                { value: 'asap', label: t.form.options.asap, icon: <Zap className="w-8 h-8" /> },
+                { value: '1-2weeks', label: t.form.options.weeks, icon: <Calendar className="w-8 h-8" /> },
+                { value: '1month', label: t.form.options.month, icon: <CalendarDays className="w-8 h-8" /> },
+                { value: '2-3months', label: t.form.options.months, icon: <CalendarRange className="w-8 h-8" /> },
+                { value: 'flexible', label: t.form.options.flexible, icon: <Clock className="w-8 h-8" /> }
             ]
         },
         {
@@ -62,11 +62,11 @@ const ProjectForm = () => {
             question: t.form.questions.budget,
             type: 'choice',
             options: [
-                { value: 'under100k', label: t.form.options.under100k, icon: '💰' },
-                { value: '100k-500k', label: t.form.options.range1, icon: '💵' },
-                { value: '500k-1m', label: t.form.options.range2, icon: '💸' },
-                { value: '1m+', label: t.form.options.over1m, icon: '💎' },
-                { value: 'notsure', label: t.form.options.notSure, icon: '🤔' }
+                { value: 'under100k', label: t.form.options.under100k, icon: <Coins className="w-8 h-8" /> },
+                { value: '100k-500k', label: t.form.options.range1, icon: <Banknote className="w-8 h-8" /> },
+                { value: '500k-1m', label: t.form.options.range2, icon: <CreditCard className="w-8 h-8" /> },
+                { value: '1m+', label: t.form.options.over1m, icon: <Gem className="w-8 h-8" /> },
+                { value: 'notsure', label: t.form.options.notSure, icon: <HelpCircle className="w-8 h-8" /> }
             ]
         },
         {
@@ -310,8 +310,8 @@ ${formData.contactName}`;
                                                     key={option.value}
                                                     onClick={() => handleChoice(option.value)}
                                                     className={`group p-6 rounded-2xl border-2 transition-all duration-300 text-left ${formData[questions[currentStep].id] === option.value
-                                                            ? 'border-cyan-500 bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
-                                                            : `${isDark ? 'border-gray-700 hover:border-cyan-400/50 bg-gray-800/50' : 'border-gray-200 hover:border-cyan-400/50 bg-gray-50'}`
+                                                        ? 'border-cyan-500 bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
+                                                        : `${isDark ? 'border-gray-700 hover:border-cyan-400/50 bg-gray-800/50' : 'border-gray-200 hover:border-cyan-400/50 bg-gray-50'}`
                                                         }`}
                                                 >
                                                     <div className="flex items-center gap-4">
@@ -334,8 +334,8 @@ ${formData.contactName}`;
                                             onChange={(e) => handleInputChange(questions[currentStep].id, e.target.value)}
                                             placeholder={questions[currentStep].placeholder}
                                             className={`w-full px-6 py-4 rounded-2xl border-2 text-lg ${isDark
-                                                    ? 'bg-gray-800/50 border-gray-700 focus:border-cyan-500 text-white placeholder-gray-500'
-                                                    : 'bg-white border-gray-200 focus:border-cyan-500 text-gray-900 placeholder-gray-400'
+                                                ? 'bg-gray-800/50 border-gray-700 focus:border-cyan-500 text-white placeholder-gray-500'
+                                                : 'bg-white border-gray-200 focus:border-cyan-500 text-gray-900 placeholder-gray-400'
                                                 } focus:outline-none transition-colors`}
                                         />
                                     )}
@@ -348,8 +348,8 @@ ${formData.contactName}`;
                                             placeholder={questions[currentStep].placeholder}
                                             rows={6}
                                             className={`w-full px-6 py-4 rounded-2xl border-2 text-lg resize-none ${isDark
-                                                    ? 'bg-gray-800/50 border-gray-700 focus:border-cyan-500 text-white placeholder-gray-500'
-                                                    : 'bg-white border-gray-200 focus:border-cyan-500 text-gray-900 placeholder-gray-400'
+                                                ? 'bg-gray-800/50 border-gray-700 focus:border-cyan-500 text-white placeholder-gray-500'
+                                                : 'bg-white border-gray-200 focus:border-cyan-500 text-gray-900 placeholder-gray-400'
                                                 } focus:outline-none transition-colors`}
                                         />
                                     )}
@@ -368,8 +368,8 @@ ${formData.contactName}`;
                                                         onChange={(e) => handleInputChange(field.id, e.target.value)}
                                                         placeholder={field.placeholder}
                                                         className={`w-full px-6 py-4 rounded-2xl border-2 text-lg ${isDark
-                                                                ? 'bg-gray-800/50 border-gray-700 focus:border-cyan-500 text-white placeholder-gray-500'
-                                                                : 'bg-white border-gray-200 focus:border-cyan-500 text-gray-900 placeholder-gray-400'
+                                                            ? 'bg-gray-800/50 border-gray-700 focus:border-cyan-500 text-white placeholder-gray-500'
+                                                            : 'bg-white border-gray-200 focus:border-cyan-500 text-gray-900 placeholder-gray-400'
                                                             } focus:outline-none transition-colors`}
                                                     />
                                                 </div>
@@ -458,8 +458,8 @@ ${formData.contactName}`;
                                 onClick={handlePrevious}
                                 disabled={currentStep === 0}
                                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${currentStep === 0
-                                        ? 'opacity-0 pointer-events-none'
-                                        : `${isDark ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-900'}`
+                                    ? 'opacity-0 pointer-events-none'
+                                    : `${isDark ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-900'}`
                                     }`}
                             >
                                 <ChevronLeft className="w-5 h-5" />
@@ -469,8 +469,8 @@ ${formData.contactName}`;
                                 onClick={handleNext}
                                 disabled={!isStepValid()}
                                 className={`flex items-center gap-2 px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${isStepValid()
-                                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40'
-                                        : `${isDark ? 'bg-gray-800 text-gray-600' : 'bg-gray-200 text-gray-400'} cursor-not-allowed`
+                                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40'
+                                    : `${isDark ? 'bg-gray-800 text-gray-600' : 'bg-gray-200 text-gray-400'} cursor-not-allowed`
                                     }`}
                             >
                                 {t.form.next}
