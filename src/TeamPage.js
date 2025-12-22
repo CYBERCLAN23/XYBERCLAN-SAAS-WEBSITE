@@ -324,7 +324,13 @@ const TeamPage = () => {
                         <div className={`max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                             <div className={`${idx % 2 === 1 ? 'lg:order-2' : ''} relative group`}>
                                 <div className="relative rounded-[4rem] overflow-hidden border border-white/10">
-                                    <img src={member.image} alt={member.name} className="w-full h-[650px] object-cover transition-transform duration-1000 group-hover:scale-110" />
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-[650px] object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                                     <div className="absolute bottom-12 left-12 p-8 bg-black/40 backdrop-blur-2xl rounded-[2.5rem] border border-white/10">
                                         <div className="w-14 h-14 bg-cyan-500 rounded-2xl flex items-center justify-center text-black mb-4 shadow-xl shadow-cyan-500/20">

@@ -46,6 +46,8 @@ const Preloader = ({ onComplete }) => {
                 <img
                     src={getLogo()}
                     alt="XyberClan"
+                    fetchpriority="high"
+                    decoding="async"
                     className="w-24 h-24 rounded-3xl relative z-10 animate-pulse"
                 />
             </div>

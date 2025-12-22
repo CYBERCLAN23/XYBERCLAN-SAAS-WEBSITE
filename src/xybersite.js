@@ -66,7 +66,13 @@ const XyberClanWebsite = () => {
           }`}>
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src={getLogo()} alt="XyberClan" className="w-14 h-14 object-contain rounded-xl" />
+            <img
+              src={getLogo()}
+              alt="XyberClan"
+              fetchpriority="high"
+              decoding="async"
+              className="w-14 h-14 object-contain rounded-xl"
+            />
             <span className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>XyberClan</span>
           </Link>
 

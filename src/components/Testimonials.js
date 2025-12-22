@@ -75,7 +75,13 @@ const Testimonials = () => {
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-full overflow-hidden border border-neutral-700">
-                                                <img src={t.avatar} alt={t.author} className="w-full h-full object-cover" />
+                                                <img
+                                                    src={t.avatar}
+                                                    alt={t.author}
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    className="w-full h-full object-cover"
+                                                />
                                             </div>
                                             <div>
                                                 <h4 className="font-bold text-xs text-white">{t.author}</h4>

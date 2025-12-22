@@ -93,7 +93,7 @@ const HeroArc = () => {
                             className="absolute top-0 w-[240px] md:w-[320px] aspect-[4/3] rounded-2xl border-4 border-white dark:border-gray-800 shadow-2xl transition-all duration-700 ease-out origin-center hover:z-50 hover:scale-110 cursor-pointer group bg-gray-900 overflow-hidden"
                             style={getCardStyle(idx)}
                         >
-                            <img src={card.src} alt={card.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                            <img src={card.src} alt={card.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
 
                             <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-300"></div>
 

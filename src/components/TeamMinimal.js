@@ -111,7 +111,7 @@ const TeamMinimal = () => {
                                 '/team/cybersecurity-chief.jpg'
                             ].map((img, i) => (
                                 <div key={i} className="w-12 h-12 rounded-full border-2 border-white dark:border-black overflow-hidden bg-gray-200">
-                                    <img src={img} alt="Team Member" className="w-full h-full object-cover" />
+                                    <img src={img} alt="Team Member" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                                 </div>
                             ))}
                             <div className="w-12 h-12 rounded-full border-2 border-white dark:border-black bg-cyan-500 flex items-center justify-center text-white text-xs font-bold">
