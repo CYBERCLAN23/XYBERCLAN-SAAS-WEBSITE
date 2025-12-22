@@ -8,7 +8,7 @@ export const ThemeProvider = ({ children }) => {
         if (typeof window !== 'undefined') {
             const stored = localStorage.getItem('xyberclan-theme');
             if (stored) return stored;
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            return 'light';
         }
         return 'light';
     });
