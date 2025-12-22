@@ -7,6 +7,7 @@ import useScrollAnimation from './hooks/useScrollAnimation';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import CTASection from './components/CTASection';
+import { getLogo } from './utils/festive';
 
 const TeamPage = () => {
     const { isDark, toggleTheme } = useTheme();
@@ -151,7 +152,7 @@ const TeamPage = () => {
                     : 'bg-transparent'
                     }`}>
                     <Link to="/" className="flex items-center gap-3 group cursor-pointer">
-                        <img src="/team/logo.jpg" alt="XyberClan" className="w-14 h-14 object-contain rounded-xl" />
+                        <img src={getLogo()} alt="XyberClan" className="w-14 h-14 object-contain rounded-xl" />
                         <span className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>XyberClan</span>
                     </Link>
 

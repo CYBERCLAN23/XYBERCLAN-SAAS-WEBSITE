@@ -4,6 +4,7 @@ import { Shield, Eye, Zap, Cloud, FileCheck, Headphones, Lock, Target, ChevronRi
 import { translations } from './translations';
 import { useTheme } from './context/ThemeContext';
 import useTypingAnimation from './hooks/useTypingAnimation';
+import { getLogo } from './utils/festive';
 import WhatsAppButton from './components/WhatsAppButton';
 import HeroArc from './components/HeroArc';
 import ServicesMinimal from './components/ServicesMinimal';
@@ -65,7 +66,7 @@ const XyberClanWebsite = () => {
           }`}>
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src="/team/logo.jpg" alt="XyberClan" className="w-14 h-14 object-contain rounded-xl" />
+            <img src={getLogo()} alt="XyberClan" className="w-14 h-14 object-contain rounded-xl" />
             <span className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>XyberClan</span>
           </Link>
 

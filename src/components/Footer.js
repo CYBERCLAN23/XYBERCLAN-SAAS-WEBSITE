@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Facebook, Twitter, Linkedin, Github, Mail, Phone, MapPin, ArrowUpRight, Github as GithubIcon, Shield, Code, Cpu } from 'lucide-react';
+import { getLogo } from '../utils/festive';
 
 const Footer = ({ translations: t }) => {
     const { isDark } = useTheme();
@@ -53,7 +54,7 @@ const Footer = ({ translations: t }) => {
                     {/* Brand Column */}
                     <div className="lg:col-span-5">
                         <div className="flex items-center gap-4 mb-8 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                            <img src="/team/logo.jpg" alt="XyberClan" className="w-16 h-16 object-contain rounded-2xl" />
+                            <img src={getLogo()} alt="XyberClan" className="w-16 h-16 object-contain rounded-2xl" />
                             <div className="text-3xl font-black tracking-tighter">
                                 Xyber<span className="text-cyan-500 transition-colors duration-500 group-hover:text-blue-500">Clan</span>
                             </div>

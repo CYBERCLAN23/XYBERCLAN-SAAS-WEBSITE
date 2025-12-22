@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
+import Snowfall from './components/Snowfall';
 import XyberClanWebsite from './xybersite';
 import TeamPage from './TeamPage';
 import ProjectForm from './ProjectForm';
@@ -7,6 +8,7 @@ import ProjectForm from './ProjectForm';
 function App() {
   return (
     <ThemeProvider>
+      <Snowfall />
       <Router>
         <Routes>
           <Route path="/" element={<XyberClanWebsite />} />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { isHolidaySeason } from '../utils/festive';
 
 const WhatsAppButton = () => {
     const phoneNumber = "237672446810"; // Updated phone number from footer
@@ -20,7 +21,7 @@ const WhatsAppButton = () => {
                 className={`bg-white text-gray-900 px-4 py-2 rounded-xl shadow-xl font-bold text-sm transform transition-all duration-300 origin-right ${isHovered ? 'scale-100 opacity-100 translate-x-0' : 'scale-90 opacity-0 translate-x-4 pointer-events-none'
                     }`}
             >
-                Chat with us! 👋
+                {isHolidaySeason() ? "Merry Christmas! 🎄 Chat with us!" : "Chat with us! 👋"}
             </div>
 
             {/* Button */}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { isHolidaySeason, HOLIDAY_MESSAGE } from '../utils/festive';
 
 const HeroArc = () => {
     const { isDark } = useTheme();
@@ -55,10 +56,14 @@ const HeroArc = () => {
             </div>
 
             <div className="relative z-10 text-center max-w-5xl px-4 mb-2">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 backdrop-blur-sm mb-8 animate-fade-in-up">
-                    <Sparkles size={16} className="text-cyan-500" />
-                    <span className="text-sm font-bold tracking-wide uppercase">Digital Excellence</span>
-                </div>
+                {isHolidaySeason() && (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-200 dark:border-red-900/30 bg-red-50/50 dark:bg-red-900/20 backdrop-blur-sm mb-8 animate-twinkle">
+                        <Sparkles size={16} className="text-red-500" />
+                        <span className="text-sm font-black tracking-widest uppercase text-red-600 dark:text-red-400">
+                            {HOLIDAY_MESSAGE}
+                        </span>
+                    </div>
+                )}
 
                 <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-tight animate-fade-in-up delay-100">
                     We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Digital</span> <br />

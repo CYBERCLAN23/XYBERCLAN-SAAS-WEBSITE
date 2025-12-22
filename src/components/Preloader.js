@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getLogo } from '../utils/festive';
 
 const Preloader = ({ onComplete }) => {
     const [progress, setProgress] = useState(0);
@@ -43,7 +44,7 @@ const Preloader = ({ onComplete }) => {
             <div className="relative mb-8">
                 <div className="absolute inset-0 bg-cyan-500 blur-3xl opacity-20 animate-pulse" />
                 <img
-                    src="/team/logo.jpg"
+                    src={getLogo()}
                     alt="XyberClan"
                     className="w-24 h-24 rounded-3xl relative z-10 animate-pulse"
                 />

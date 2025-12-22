@@ -10,6 +10,7 @@ import {
     Wrench, Wifi, Lock, BookOpen, Code, Layout
 } from 'lucide-react';
 import { useTheme } from './context/ThemeContext';
+import { getLogo } from './utils/festive';
 
 const ProjectForm = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -572,7 +573,7 @@ Sent from XyberClan Website`;
             <div className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
                 <div className="max-w-3xl mx-auto flex justify-between items-center">
                     <Link to="/" className="flex items-center gap-3 group">
-                        <img src="/team/logo.jpg" alt="XyberClan" className="w-10 h-10 object-contain rounded-xl" />
+                        <img src={getLogo()} alt="XyberClan" className="w-10 h-10 object-contain rounded-xl" />
                         <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-black'}`}>
                             Xyber<span className="text-cyan-500">Clan</span>
                         </span>
