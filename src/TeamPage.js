@@ -290,7 +290,7 @@ const TeamPage = () => {
                                             filter: isCenter ? 'none' : 'grayscale(20%)' // Subtle grayscale for non-centered
                                         }}
                                     >
-                                        <div className={`relative p-3 rounded-[2.5rem] bg-neutral-900 border-4 ${isCenter ? 'border-[#00A3FF]' : 'border-white/10'} shadow-2xl transition-all duration-500`}>
+                                        <div className={`relative p-3 rounded-[2.5rem] border-4 ${isDark ? 'bg-neutral-900 border-[#00A3FF]' : 'bg-white border-[#00A3FF]'} shadow-2xl transition-all duration-500`}>
                                             <div className="aspect-[3.5/5] rounded-[2rem] overflow-hidden">
                                                 <img
                                                     src={member.image}
@@ -301,7 +301,7 @@ const TeamPage = () => {
 
                                             {isCenter && (
                                                 <div className="absolute -bottom-20 left-0 right-0 animate-fade-in text-center">
-                                                    <h3 className="text-2xl font-black text-white">{member.name}</h3>
+                                                    <h3 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>{member.name}</h3>
                                                     <p className="text-[#00A3FF] font-bold text-sm uppercase tracking-widest">{member.role}</p>
                                                 </div>
                                             )}

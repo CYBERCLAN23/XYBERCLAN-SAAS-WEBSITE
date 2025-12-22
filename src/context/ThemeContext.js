@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
         // Check localStorage first, then system preference
         if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem('xyberclan-theme');
+            const stored = localStorage.getItem('xyberclan-theme-v2');
             if (stored) return stored;
             return 'light';
         }
@@ -22,7 +22,7 @@ export const ThemeProvider = ({ children }) => {
         } else {
             document.documentElement.classList.remove('dark');
         }
-        localStorage.setItem('xyberclan-theme', theme);
+        localStorage.setItem('xyberclan-theme-v2', theme);
     }, [isDark, theme]);
 
     const toggleTheme = useCallback((e) => {
